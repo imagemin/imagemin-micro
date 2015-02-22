@@ -5,7 +5,7 @@ var multipart = require('co-multipart');
 var thunkify = require('thunkify');
 
 module.exports.create = function *() {
-	var compress = thunkify(compressor);
+	var compress = thunkify(compressor.path);
 	var parts = yield* multipart(this);
 
 	this.type = 'application/json';
