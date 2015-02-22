@@ -1,0 +1,30 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "A imagemin API",
+  "license": "MIT",
+  "repository": "imagemin/api",
+  "author": {
+    "name": "Kevin Mårtensson",
+    "email": "kevinmartensson@gmail.com",
+    "url": "https://github.com/kevva"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test node test/test.js"
+  },
+  "devDependencies": {
+    "ava": "0.0.4",
+    "got": "^2.4.0",
+    "imagemin": "^3.1.0",
+    "koa": "^0.17.0",
+    "koa-bodyparser": "^1.3.1",
+    "koa-logger": "^1.2.2",
+    "koa-route": "^2.4.0",
+    "koa-static": "^1.4.9",
+    "nock": "^0.59.1",
+    "thunkify": "^2.1.2"
+  }
+}
