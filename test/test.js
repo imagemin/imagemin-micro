@@ -17,7 +17,7 @@ test('minify image from URL', function (t) {
 		.replyWithFile(200, path.join(__dirname, 'fixtures/test.png'));
 
 	app.listen('3000');
-	got.post('http://localhost:3000/url', {
+	got.post('http://localhost:3000/image', {
 		body: body,
 		headers: headers
 	}, function (err, data) {
