@@ -1,13 +1,13 @@
 'use strict';
 
-var compressor = require('../lib');
-var multipart = require('co-multipart');
-var thunkify = require('thunkify');
+const compressor = require('../lib');
+const multipart = require('co-multipart');
+const thunkify = require('thunkify');
 
 module.exports.add = function *() {
-	var compress;
-	var path;
-	var parts;
+	let compress;
+	let path;
+	let parts;
 
 	if (this.request.type === 'multipart/form-data') {
 		compress = thunkify(compressor.path);

@@ -1,28 +1,21 @@
-'use strict';
+import api from '../';
+import got from 'got';
+import nock from 'nock';
+import path from 'path';
+import test from 'ava';
 
-var api = require('../');
-var got = require('got');
-var nock = require('nock');
-var path = require('path');
-var test = require('ava');
-
-test('minify image from URL', function (t) {
-	t.plan(3);
-
-	var app = api();
-	var body = JSON.stringify({url: 'http://foo.com/test.png'});
-	var headers = {'Content-Type': 'application/json'};
-	var scope = nock('http://foo.com')
+test('minify image from URL', async function (t) {
+	const app = api();
+	const body = JSON.stringify({url: 'http://foo.com/test.png'});
+	const headers = {'Content-Type': 'application/json'};
+	const scope = nock('http://foo.com')
 		.get('/test.png')
 		.replyWithFile(200, path.join(__dirname, 'fixtures/test.png'));
 
 	app.listen('3000');
-	got.post('http://localhost:3000/image', {
-		body: body,
-		headers: headers
-	}, function (err, data) {
-		t.assert(!err, err);
-		t.assert(scope.isDone());
-		t.assert(data);
-	});
+
+	const data = await got.post('http://localhost:3000/image', {body, headers});
+
+	t.true(scope.isDone());
+	t.ok(data);
 });
