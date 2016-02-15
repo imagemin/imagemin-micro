@@ -7,7 +7,7 @@ import test from 'ava';
 test('minify image from URL', async function (t) {
 	const app = api();
 	const body = JSON.stringify({url: 'http://foo.com/test.png'});
-	const headers = {'Content-Type': 'application/json'};
+	const headers = {'content-type': 'application/json'};
 	const scope = nock('http://foo.com')
 		.get('/test.png')
 		.replyWithFile(200, path.join(__dirname, 'fixtures/test.png'));
