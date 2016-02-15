@@ -2,7 +2,6 @@
 
 const compressor = require('../lib');
 const multipart = require('co-multipart');
-const thunkify = require('thunkify');
 
 module.exports.add = function *() {
 	let compress;
@@ -10,13 +9,13 @@ module.exports.add = function *() {
 	let parts;
 
 	if (this.request.type === 'multipart/form-data') {
-		compress = thunkify(compressor.path);
+		compress = compressor.path;
 		parts = yield multipart(this);
 		path = parts.files[0].path;
 	}
 
 	if (this.request.type === 'application/json') {
-		compress = thunkify(compressor.url);
+		compress = compressor.url;
 		path = this.request.body.url;
 	}
 
