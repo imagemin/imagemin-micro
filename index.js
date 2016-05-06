@@ -1,20 +1,15 @@
 'use strict';
-
-const bodyparser = require('koa-bodyparser');
-const image = require('./api/image');
-const koa = require('koa');
-const logger = require('koa-logger');
-const route = require('koa-route');
+const koaBodyparser = require('koa-bodyparser');
+const Koa = require('koa');
+const koaLogger = require('koa-logger');
+const koaRoute = require('koa-route');
 
 module.exports = () => {
-	const app = koa();
+	const app = new Koa();
 
-	if (process.env.NODE_ENV !== 'test') {
-		app.use(logger());
-	}
-
-	app.use(bodyparser());
-	app.use(route.post('/image', image.add));
+	app.use(koaLogger());
+	app.use(koaBodyparser());
+	app.use(koaRoute.post('/image', require('./api/image').create));
 
 	return app;
 };

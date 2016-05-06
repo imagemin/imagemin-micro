@@ -25,21 +25,28 @@
     "node": ">=4"
   },
   "scripts": {
-    "test": "xo && NODE_ENV=test ava"
+    "test": "xo && ava"
   },
   "devDependencies": {
     "ava": "*",
+    "busboy-promise": "0.0.3",
     "co-multipart": "^2.0.0",
     "got": "^6.1.1",
-    "imagemin": "^4.0.0",
-    "koa": "^1.1.2",
-    "koa-bodyparser": "^2.0.1",
-    "koa-logger": "^1.2.2",
-    "koa-route": "^2.4.0",
-    "koa-static": "^2.0.0",
-    "nock": "^7.2.0",
+    "imagemin": "^5.0.2",
+    "is-png": "^1.0.0",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^3.0.0",
+    "koa-logger": "^2.0.0",
+    "koa-route": "^3.1.0",
+    "nock": "^8.0.0",
     "pify": "^2.3.0",
     "xo": "*"
+  },
+  "optionalDependencies": {
+    "imagemin-gifsicle": "^5.0.0",
+    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-optipng": "^5.0.0",
+    "imagemin-svgo": "^5.0.0"
   },
   "xo": {
     "esnext": true
