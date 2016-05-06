@@ -3,13 +3,13 @@ import got from 'got';
 import isPng from 'is-png';
 import nock from 'nock';
 import test from 'ava';
-import m from '../';
+import m from './';
 
 test(async t => {
 	const app = m();
 	const scope = nock('http://foo.com')
 		.get('/test.png')
-		.replyWithFile(200, path.join(__dirname, 'fixtures/test.png'));
+		.replyWithFile(200, path.join(__dirname, 'fixture.png'));
 
 	app.listen('3000');
 

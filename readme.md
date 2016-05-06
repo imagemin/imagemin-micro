@@ -1,6 +1,6 @@
-# api [![Build Status](http://img.shields.io/travis/imagemin/api.svg?style=flat)](https://travis-ci.org/imagemin/api)
+# api [![Build Status](https://travis-ci.org/imagemin/api.svg?branch=master)](https://travis-ci.org/imagemin/api)
 
-> A imagemin api
+> API for imagemin
 
 ## License
 

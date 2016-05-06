@@ -30,7 +30,6 @@
   "devDependencies": {
     "ava": "*",
     "busboy-promise": "0.0.3",
-    "co-multipart": "^2.0.0",
     "got": "^6.1.1",
     "imagemin": "^5.0.2",
     "is-png": "^1.0.0",
