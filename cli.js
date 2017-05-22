@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 'use strict';
-const api = require('./');
-const app = api();
+const execa = require('execa');
 
-app.listen('3000', () => console.log('Listening on 127.0.0.1:3000'));
+execa('npm', ['run', 'start', '--'].concat(process.argv.slice(2)), {
+	cwd: __dirname,
+	stdio: 'inherit'
+});

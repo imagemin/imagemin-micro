@@ -1,32 +1,39 @@
+import fs from 'fs';
 import path from 'path';
 import got from 'got';
-import isPng from 'is-png';
+import micro from 'micro';
 import nock from 'nock';
+import pify from 'pify';
 import test from 'ava';
-import m from './';
+import testListen from 'test-listen';
+import m from '.';
 
-let app;
-let scope;
+const fsP = pify(fs);
+const fixture = path.join(__dirname, 'fixture.png');
 
-test.before(() => {
-	app = m();
-	scope = nock('http://foo.com')
+let url;
+
+test.before(async () => {
+	url = await testListen(micro(m));
+
+	nock('http://foo.bar')
 		.get('/test.png')
 		.replyWithFile(200, path.join(__dirname, 'fixture.png'));
-
-	app.listen(3000);
 });
 
-test.after(t => {
-	t.true(scope.isDone());
+test('minify file using POST body', async t => {
+	const buf = await fsP.readFile(fixture);
+	const body = (await got.post(url, {
+		body: buf,
+		encoding: null
+	})).body;
+
+	t.true(buf.length > body.length);
 });
 
-test(async t => {
-	const res = await got.post('http://localhost:3000/image', {
-		body: JSON.stringify({url: 'http://foo.com/test.png'}),
-		encoding: null,
-		headers: {'content-type': 'application/json'}
-	});
+test('minify file using url', async t => {
+	const buf = await fsP.readFile(fixture);
+	const body = (await got.post(`${url}?url=http://foo.bar/test.png`, {encoding: null})).body;
 
-	t.true(isPng(res.body));
+	t.true(buf.length > body.length);
 });

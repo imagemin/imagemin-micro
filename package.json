@@ -1,10 +1,9 @@
 {
-  "name": "api",
-  "private": true,
+  "name": "imagemin-micro",
   "version": "1.0.0",
-  "description": "A imagemin API",
+  "description": "Microservice for Imagemin",
   "license": "MIT",
-  "repository": "imagemin/api",
+  "repository": "imagemin/imagemin-micro",
   "author": {
     "name": "Kevin Mårtensson",
     "email": "kevinmartensson@gmail.com",
@@ -22,32 +21,43 @@
     }
   ],
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "scripts": {
+    "start": "micro",
     "test": "xo && ava"
+  },
+  "files": [
+    "cli.js",
+    "index.js"
+  ],
+  "keywords": [
+    "api",
+    "compress",
+    "image",
+    "micro",
+    "minify",
+    "rest",
+    "service"
+  ],
+  "dependencies": {
+    "execa": "^0.6.3",
+    "got": "^6.7.1",
+    "imagemin": "^5.3.1",
+    "micro": "^7.3.3",
+    "nock": "^9.0.13",
+    "query-string": "^4.3.4"
   },
   "devDependencies": {
     "ava": "*",
-    "busboy-promise": "0.0.3",
-    "got": "^6.1.1",
-    "imagemin": "^5.0.2",
-    "is-png": "^1.0.0",
-    "koa": "^2.0.0",
-    "koa-bodyparser": "^3.0.0",
-    "koa-logger": "^2.0.0",
-    "koa-route": "^3.1.0",
-    "nock": "^8.0.0",
     "pify": "^2.3.0",
+    "test-listen": "^1.0.2",
     "xo": "*"
   },
   "optionalDependencies": {
     "imagemin-gifsicle": "^5.0.0",
-    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-jpegtran": "^5.0.2",
     "imagemin-optipng": "^5.0.0",
     "imagemin-svgo": "^5.0.0"
-  },
-  "xo": {
-    "esnext": true
   }
 }
